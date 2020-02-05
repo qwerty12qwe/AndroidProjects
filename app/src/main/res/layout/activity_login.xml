@@ -13,9 +13,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:orientation="horizontal"
         >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/stackoverflow"></ImageView>
+        
     </LinearLayout>
 
     <LinearLayout
@@ -98,6 +111,7 @@
                 android:layout_weight="1"
                 android:gravity="right|center_vertical"
                 android:text="¿Contraseña olvidada?"
+                android:textSize="14dp"
                 android:textColor="@color/design_default_color_primary_dark" />
         </LinearLayout>
 
@@ -135,6 +149,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Recordarme"
+            android:textSize="14dp"
+            android:gravity="center_vertical"
+            ></CheckBox>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="0.8"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -157,13 +188,22 @@
         >
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        >
+        android:layout_weight="0.5"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Crea una cuenta"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textSize="14dp"
+            android:gravity="center_vertical"
+        ></TextView>
+
     </LinearLayout>
 
 
