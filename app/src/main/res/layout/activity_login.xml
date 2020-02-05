@@ -172,12 +172,12 @@
         >
 
         <Button
+            android:id="@+id/iniciarsesion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="Arial"
-            android:textSize="20dp"
             android:text="Iniciar sesion"
-            ></Button>
+            android:textSize="20dp"></Button>
 
     </LinearLayout>
     <LinearLayout
