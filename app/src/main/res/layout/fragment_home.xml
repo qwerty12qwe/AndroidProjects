@@ -4,23 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:orientation="vertical"
-    android:weightSum="10"
-    >
+    android:weightSum="10">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:weightSum="4"
         android:orientation="horizontal"
-        >
+        android:padding="10dp"
+        android:weightSum="8">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:fontFamily="Arial"
             android:gravity="center_vertical"
             android:text="Top Questions"
@@ -30,20 +28,21 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="3"
             android:orientation="vertical"
-            android:layout_weight="1"
-            android:weightSum="2"
-            >
+            android:weightSum="2">
 
             <Button
+                android:id="@+id/btnpreguntar"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@android:color/holo_blue_dark"
                 android:text="Pregunta"
                 android:textColor="@android:color/background_light"></Button>
-            
+
             <Spinner
+                android:id="@+id/filtros"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
@@ -59,6 +58,4 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9" />
-
-
 </LinearLayout>

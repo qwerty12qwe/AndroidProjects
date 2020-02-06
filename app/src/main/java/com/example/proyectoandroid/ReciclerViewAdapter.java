@@ -42,9 +42,9 @@ public class ReciclerViewAdapter extends RecyclerView.Adapter<ReciclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder,int position){
         holder.titulo.setText(preguntas.get(position).getTitulo());
-        holder.votos.setText(""+preguntas.get(position).getVotos());
-        holder.respuestas.setText(""+preguntas.get(position).getRespuestas());
-        holder.visitas.setText(""+preguntas.get(position).getVisitas());
+        holder.votos.setText(preguntas.get(position).getVotos()+" votos");
+        holder.respuestas.setText(""+preguntas.get(position).getRespuestas()+" respuestas");
+        holder.visitas.setText(""+preguntas.get(position).getVisitas()+" vistas");
 
     }
 
