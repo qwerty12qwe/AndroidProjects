@@ -30,7 +30,6 @@
                     android:layout_height="0dp"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
-
                     android:text="Titulo"
                     android:textColor="@color/azul"
                     android:textSize="24sp" />
@@ -71,8 +70,6 @@
                     android:layout_weight="4"
                     android:gravity="center"
                     android:text="votos"
-                    android:drawableLeft="@drawable/like"
-                    android:drawableTint="@color/app"
                     />
 
                 <TextView

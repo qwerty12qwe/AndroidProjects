@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1"
         android:orientation="horizontal"
         >
     </LinearLayout>
@@ -28,8 +28,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/stackoverflow"></ImageView>
-        
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        ></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -175,9 +181,12 @@
             android:id="@+id/iniciarsesion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/azul"
             android:fontFamily="Arial"
             android:text="Iniciar sesion"
-            android:textSize="20dp"></Button>
+            android:textColor="@android:color/background_light"
+            android:textSize="20dp"
+            android:textStyle="bold"></Button>
 
     </LinearLayout>
     <LinearLayout
@@ -196,13 +205,13 @@
         android:paddingRight="20dp">
 
         <TextView
+            android:id="@+id/btncrearcuenta"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="Crea una cuenta"
             android:textColor="@color/design_default_color_primary_dark"
-            android:textSize="14dp"
-            android:gravity="center_vertical"
-        ></TextView>
+            android:textSize="14dp"></TextView>
 
     </LinearLayout>
 
