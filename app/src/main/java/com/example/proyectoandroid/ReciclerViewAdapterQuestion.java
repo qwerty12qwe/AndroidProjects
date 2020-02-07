@@ -12,7 +12,7 @@ import com.example.proyectoandroid.models.Question;
 
 import java.util.List;
 
-public class ReciclerViewAdapter extends RecyclerView.Adapter<ReciclerViewAdapter.ViewHolder> {
+public class ReciclerViewAdapterQuestion extends RecyclerView.Adapter<ReciclerViewAdapterQuestion.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView titulo,descripcion,usuario,visitas,votos,respuestas;
@@ -28,7 +28,7 @@ public class ReciclerViewAdapter extends RecyclerView.Adapter<ReciclerViewAdapte
 
     public List<Question> preguntas;
 
-    public ReciclerViewAdapter(List<Question> preguntas){
+    public ReciclerViewAdapterQuestion(List<Question> preguntas){
         this.preguntas = preguntas;
     }
 

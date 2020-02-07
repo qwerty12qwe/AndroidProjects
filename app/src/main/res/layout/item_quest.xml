@@ -16,37 +16,6 @@
             android:orientation="vertical"
             android:weightSum="2">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:orientation="horizontal"
-                android:weightSum="12">
-
-                <TextView
-                    android:id="@+id/votos"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="votos" />
-
-                <TextView
-                    android:id="@+id/respuestas"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="respuestas" />
-
-                <TextView
-                    android:id="@+id/visitas"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="visitas" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,6 +49,48 @@
                         android:text="tags" />
                 </LinearLayout>
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"
+                android:weightSum="12">
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView2"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    app:srcCompat="@drawable/vote" />-->
+
+                <TextView
+                    android:id="@+id/votos"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="votos"
+                    android:drawableLeft="@drawable/like"
+                    android:drawableTint="@color/app"
+                    />
+
+                <TextView
+                    android:id="@+id/respuestas"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="respuestas" />
+
+                <TextView
+                    android:id="@+id/visitas"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="visitas"
+                    />
             </LinearLayout>
 
 

@@ -7,18 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectoandroid.R;
-import com.example.proyectoandroid.ReciclerViewAdapter;
+import com.example.proyectoandroid.ReciclerViewAdapterQuestion;
 import com.example.proyectoandroid.models.Question;
 
 import java.util.ArrayList;
@@ -29,7 +26,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
 
     private RecyclerView recicler;
-    private ReciclerViewAdapter adapter;
+    private ReciclerViewAdapterQuestion adapter;
     private Spinner filtros;
     private Button preguntar;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,8 +34,6 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-
 
         recicler = root.findViewById(R.id.preguntas);
         recicler.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -61,7 +56,7 @@ public class HomeFragment extends Fragment {
         q.setVotos(58);
         preguntas.add(q);
 
-        adapter = new ReciclerViewAdapter(preguntas);
+        adapter = new ReciclerViewAdapterQuestion(preguntas);
         recicler.setAdapter(adapter);
 
         String [] values = {"Filtro1","Filtro2"};
