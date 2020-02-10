@@ -20,6 +20,7 @@
         android:layout_weight="1.5">
 
         <ImageView
+            android:id="@+id/registro_volver"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/stackoverflow"></ImageView>
@@ -45,11 +46,14 @@
         android:textStyle="bold"></TextView>
 
     <EditText
+        android:id="@+id/registro_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_weight="0.8"></EditText>
+        android:layout_weight="0.8"
+        android:singleLine="true"
+        ></EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,14 +74,17 @@
         android:text="Email"
         android:textColor="@android:color/background_dark"
         android:textSize="24dp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold"
+        android:singleLine="true"></TextView>
 
     <EditText
+        android:id="@+id/registro_email"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_weight="0.8"></EditText>
+        android:layout_weight="0.8"
+        android:singleLine="true"></EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,14 +103,18 @@
         android:text="Contraseña"
         android:textColor="@android:color/background_dark"
         android:textSize="24dp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold"
+        ></TextView>
 
     <EditText
+        android:id="@+id/registro_passwd"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_weight="0.8"></EditText>
+        android:layout_weight="0.8"
+        android:singleLine="true"
+        android:password="true"></EditText>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -37,6 +38,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     public static final String MYURL = "https://pruebabasesexternas.000webhostapp.com/stack/";
 
+//    411I5hM9zT
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +57,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         but.setOnClickListener(this);
         crearcuenta.setOnClickListener(this);
+
+        SharedPreferences prefs = getSharedPreferences("ficherologin",Context.MODE_PRIVATE);
+        if (prefs.getAll().size() != 0){
+            temail = prefs.getString("email","defecto");
+            tpassword = prefs.getString("password","defecto");
+            loadJSON();
+        }
+
     }
 
 
@@ -66,18 +78,22 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 return;
             }
             else{
+                temail = email.getText().toString();
+                tpassword = password.getText().toString();
                 loadJSON();
             }
 
         } else if (crearcuenta == v) {
             Intent it = new Intent(this, Registro.class);
             startActivity(it);
+            finish();
         }
     }
 
-    private void loadJSON() {
+    public static Retrofit getretrofit(){
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .setDateFormat("yyyy-MM-dd")
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -85,19 +101,47 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        LoginApi restClient = retrofit.create(LoginApi.class);
+        return retrofit;
+    }
+    private void loadJSON() {
 
+        Retrofit retrofit = getretrofit();
+
+        LoginApi restClient = retrofit.create(LoginApi.class);
         Call<LoginState> call = restClient.postlogin(temail, tpassword);
 
         call.enqueue(new Callback<LoginState>() {
             @Override
             public void onResponse(Call<LoginState> call, Response<LoginState> response) {
                     LoginState data = response.body();
-                    Toast.makeText(Login.this, data.getUsuario().getName(), Toast.LENGTH_SHORT).show();
 
-//                    Bundle b = new Bundle();
-//                    Intent it = new Intent(Login.this, Nav.class);
-//                    startActivity(it);
+                    switch(data.getEstado()){
+
+                        case 1:
+
+                            if (recordar.isChecked()){
+                                SharedPreferences prefs = getSharedPreferences("ficherologin",Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = prefs.edit();
+                                editor.putString("email", data.getUsuario().getEmail());
+                                editor.putString("password",tpassword);
+                                editor.commit();
+                            }
+
+                            Bundle b = new Bundle();
+                            b.putString("nombre",data.getUsuario().getName());
+                            b.putString("email",data.getUsuario().getEmail());
+
+                            Intent it = new Intent(Login.this, Nav.class);
+                            it.putExtras(b);
+                            startActivity(it);
+
+                            finish();
+                            break;
+                        case 2:
+                            Toast.makeText(Login.this, "Este usuario no esta registrado", Toast.LENGTH_SHORT).show();
+                            break;
+
+                    }
             }
 
             @Override
