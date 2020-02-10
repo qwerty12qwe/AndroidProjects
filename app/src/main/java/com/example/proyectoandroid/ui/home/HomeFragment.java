@@ -1,11 +1,15 @@
 package com.example.proyectoandroid.ui.home;
 
+import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -14,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proyectoandroid.MakeQuestion;
 import com.example.proyectoandroid.R;
 import com.example.proyectoandroid.ReciclerViewAdapterQuestion;
 import com.example.proyectoandroid.models.Question;
@@ -21,7 +26,7 @@ import com.example.proyectoandroid.models.Question;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements  View.OnClickListener{
 
     private HomeViewModel homeViewModel;
 
@@ -29,6 +34,8 @@ public class HomeFragment extends Fragment {
     private ReciclerViewAdapterQuestion adapter;
     private Spinner filtros;
     private Button preguntar;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -40,6 +47,8 @@ public class HomeFragment extends Fragment {
 
         filtros = root.findViewById(R.id.filtros);
         preguntar = root.findViewById(R.id.btnpreguntar);
+
+        preguntar.setOnClickListener(this);
 
         List<Question> preguntas = new ArrayList<>();
         Question q = new Question();
@@ -62,7 +71,14 @@ public class HomeFragment extends Fragment {
         String [] values = {"Filtro1","Filtro2"};
         filtros.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item,values));
 
-
         return root;
+    }
+
+    @Override
+    public void onClick(View v){
+        if (v == preguntar){
+            Intent it = new Intent(getActivity(), MakeQuestion.class);
+            startActivity(it);
+        }
     }
 }

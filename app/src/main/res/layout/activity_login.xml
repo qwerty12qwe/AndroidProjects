@@ -66,10 +66,12 @@
         >
 
         <EditText
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="Arial"
             android:textSize="24dp"
+            android:singleLine="true"
             ></EditText>
 
 
@@ -112,6 +114,7 @@
                 android:textStyle="bold"></TextView>
 
             <TextView
+                android:id="@+id/login_recuperar_pass"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -133,10 +136,13 @@
         >
 
         <EditText
+            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="Arial"
             android:textSize="24dp"
+            android:singleLine="true"
+            android:password="true"
             ></EditText>
 
 
@@ -160,6 +166,7 @@
         android:paddingRight="20dp">
 
         <CheckBox
+            android:id="@+id/login_recordar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Recordarme"

@@ -63,6 +63,7 @@
 <!--                    android:layout_weight="1"-->
 <!--                    app:srcCompat="@drawable/vote" />-->
 
+
                 <TextView
                     android:id="@+id/votos"
                     android:layout_width="0dp"
