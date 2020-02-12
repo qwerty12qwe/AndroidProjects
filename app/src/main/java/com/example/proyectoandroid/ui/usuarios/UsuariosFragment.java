@@ -28,6 +28,7 @@ import com.example.proyectoandroid.ReciclerViewAdapterUser;
 import com.example.proyectoandroid.Registro;
 import com.example.proyectoandroid.models.LoginState;
 import com.example.proyectoandroid.models.User;
+import com.example.proyectoandroid.models.UsuarioTag;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -77,20 +78,19 @@ public class UsuariosFragment extends Fragment implements  View.OnClickListener{
 
         LoginApi restClient = retrofit.create(LoginApi.class);
 
-        Call<LoginState> call = restClient.getusuarios(type);
+        Call<List<UsuarioTag>> call = restClient.getusuarios(type);
 
-        call.enqueue(new Callback<LoginState>() {
+        call.enqueue(new Callback<List<UsuarioTag>>() {
             @Override
-            public void onResponse(Call<LoginState> call, Response<LoginState> response) {
-                LoginState data = response.body();
+            public void onResponse(Call<List<UsuarioTag>> call, Response<List<UsuarioTag>> response) {
+                List<UsuarioTag> data = response.body();
 
-                adapterusers = new ReciclerViewAdapterUser(data.getUsuario());
+                adapterusers = new ReciclerViewAdapterUser(data);
                 mostrarlista.setAdapter(adapterusers);
-
             }
 
             @Override
-            public void onFailure(Call<LoginState> call, Throwable t) {
+            public void onFailure(Call<List<UsuarioTag>> call, Throwable t) {
                 Toast.makeText(getActivity(), "error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

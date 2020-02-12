@@ -1,6 +1,8 @@
 package com.example.proyectoandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +14,9 @@ import android.widget.Toast;
 
 import com.example.proyectoandroid.API.LoginApi;
 import com.example.proyectoandroid.models.LoginState;
+import com.example.proyectoandroid.models.Tag;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +32,9 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView img;
 
+    private ReciclerViewAdapterTagSelector selector;
+    private RecyclerView reci;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +47,13 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         contra = findViewById(R.id.registro_passwd);
         recontra = findViewById(R.id.registro_passwdre);
 
-        img.setOnClickListener(this);
 
+        reci = findViewById(R.id.registro_tags);
+        reci.setLayoutManager(new LinearLayoutManager(this));
+
+        leerTags();
+
+        img.setOnClickListener(this);
         registrarse.setOnClickListener(this);
 
     }
@@ -67,7 +79,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         LoginApi restClient = retrofit.create(LoginApi.class);
 
         String [] form = {nombre.getText().toString().trim(),email.getText().toString().trim(),contra.getText().toString()};
-        Call<LoginState> call = restClient.registrologin(form[0],form[1],form[2]);
+
+        Call<LoginState> call = restClient.registrologin(form[0],form[1],form[2],selector.ids);
 
         call.enqueue(new Callback<LoginState>() {
 
@@ -85,6 +98,28 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
             @Override
             public void onFailure(Call<LoginState> call, Throwable t) {
+                Toast.makeText(Registro.this, "error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void leerTags(){
+        Retrofit retrofit = Login.getretrofit();
+
+        LoginApi restClient = retrofit.create(LoginApi.class);
+
+        Call<List<Tag>> call = restClient.gettags();
+
+        call.enqueue(new Callback<List<Tag>>() {
+
+            @Override
+            public void onResponse(Call<List<Tag>> call, Response<List<Tag>> response) {
+                List<Tag> d = response.body();
+                selector = new ReciclerViewAdapterTagSelector(d);
+                reci.setAdapter(selector);
+            }
+            @Override
+            public void onFailure(Call<List<Tag>> call, Throwable t) {
                 Toast.makeText(Registro.this, "error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -119,6 +154,11 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         if (!recontra.getText().toString().equals(form[2])){
             flag = false;
             errores+="Las contraseñas no son iguales\n";
+        }
+
+        if (selector.ids.size() == 0){
+            flag = false;
+            errores+="Selecciona almenos una etiqueta\n";
         }
 
         if (!errores.isEmpty())

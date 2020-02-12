@@ -6,6 +6,7 @@ import com.example.proyectoandroid.models.Question;
 import com.example.proyectoandroid.models.QuestionTags;
 import com.example.proyectoandroid.models.Tag;
 import com.example.proyectoandroid.models.User;
+import com.example.proyectoandroid.models.UsuarioTag;
 
 import java.util.List;
 
@@ -30,11 +31,12 @@ public interface LoginApi {
     Call<LoginState> registrologin(
             @Field("nombre") String nombre,
             @Field("email") String email,
-            @Field("password") String password
+            @Field("password") String password,
+            @Field("tags[]") List<Integer> tags
     );
 
     @GET("usuarios.php")
-    Call<LoginState> getusuarios(@Query("type") String type);
+    Call<List<UsuarioTag>> getusuarios(@Query("type") String type);
 
 
     @FormUrlEncoded

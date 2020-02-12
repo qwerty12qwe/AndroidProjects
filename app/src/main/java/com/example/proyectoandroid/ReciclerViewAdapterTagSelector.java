@@ -1,36 +1,42 @@
 package com.example.proyectoandroid;
 
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectoandroid.models.Tag;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReciclerViewAdapterTagSelector extends RecyclerView.Adapter<ReciclerViewAdapterTagSelector.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView titulo;
-        Button borrar;
+        CheckBox titulo;
 
         public ViewHolder(View itemView){
             super(itemView);
             titulo = itemView.findViewById(R.id.item_tag_selector);
-            borrar = itemView.findViewById(R.id.delete_tag_selector);
         }
     }
 
     public List<Tag> etiquetas;
+    List<Integer> ids;
 
     public ReciclerViewAdapterTagSelector(List<Tag> etiquetas){
         this.etiquetas = etiquetas;
+        ids = new ArrayList<>();
     }
 
     @NonNull
@@ -40,16 +46,25 @@ public class ReciclerViewAdapterTagSelector extends RecyclerView.Adapter<Recicle
         ViewHolder holder  = new ViewHolder(view);
         return holder;
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position){
         holder.titulo.setText(etiquetas.get(position).getTitulo());
+        holder.titulo.setOnClickListener(v -> {
+            if (holder.titulo.isChecked())
+                ids.add(etiquetas.get(position).getId());
+            else
+                ids.removeIf(x -> x==etiquetas.get(position).getId());
 
+            for (Integer t : ids) {
+                Log.e("printear: ",""+t);
+            }
+
+        });
     }
     @Override
     public int getItemCount(){
         return etiquetas.size();
     }
-
-
 
 }

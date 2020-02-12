@@ -7,112 +7,95 @@
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".MakeQuestion"
+    android:gravity="center_vertical"
     >
 
 
-    <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ></LinearLayout>
+
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_weight="4"
-        android:weightSum="10"
-        android:orientation="vertical"
-        >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="Arial"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="Titulo"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24dp"
+        android:textStyle="bold"></TextView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"></LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"></LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:fontFamily="Arial"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:text="Titulo"
-            android:textColor="@android:color/background_dark"
-            android:textSize="24dp"
-            android:textStyle="bold"></TextView>
+    <EditText
+        android:id="@+id/make_question_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"></EditText>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:textSize="20dp"></EditText>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                ></LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.2"></LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="Arial"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="Descripcion"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24dp"
+        android:textStyle="bold"></TextView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:fontFamily="Arial"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:text="Descripcion"
-            android:textColor="@android:color/background_dark"
-            android:textSize="24dp"
-            android:textStyle="bold"></TextView>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:textSize="20dp"></EditText>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.2"></LinearLayout>
+    <EditText
+        android:id="@+id/make_question_descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"></EditText>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:fontFamily="Arial"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:text="Etiquetas"
-            android:textColor="@android:color/background_dark"
-            android:textSize="24dp"
-            android:textStyle="bold"></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="Arial"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="Etiquetas"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24dp"
+        android:textStyle="bold"></TextView>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:textSize="20dp"></EditText>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.2"></LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:text="PREGUNTAR"
-            android:background="@color/azul"
-            android:textColor="@color/cardview_light_background"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            ></Button>
-
-    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/question_tags_selector"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        ></androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginTop="10dp"></androidx.recyclerview.widget.RecyclerView>
+
+
+    <Button
+        android:id="@+id/make_question_btnpreguntar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/azul"
+        android:text="PREGUNTAR"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="20dp"
+        android:textStyle="bold"></Button>
 
 
 

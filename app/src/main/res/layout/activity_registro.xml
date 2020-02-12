@@ -6,163 +6,208 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="0dp"
-    android:weightSum="10"
     tools:context=".Registro">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="0.5"></LinearLayout>-->
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"></LinearLayout>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5">
-
-        <ImageView
-            android:id="@+id/registro_volver"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/stackoverflow"></ImageView>
+            android:weightSum="10"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"></LinearLayout>
+                <ImageView
+                    android:id="@+id/registro_volver"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/stackoverflow"></ImageView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.5"
-        android:fontFamily="Arial"
-        android:gravity="center_vertical"
-        android:text="Nombre a mostrar"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24dp"
-        android:textStyle="bold"></TextView>
+            </LinearLayout>
 
-    <EditText
-        android:id="@+id/registro_name"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.8"
-        android:singleLine="true"
-        ></EditText>
+            <!--    <LinearLayout-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="0dp"-->
+            <!--        android:layout_weight="0.5"></LinearLayout>-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:fontFamily="Arial"
+                android:gravity="center_vertical"
+                android:text="Nombre a mostrar"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24dp"
+                android:textStyle="bold"></TextView>
 
-        ></LinearLayout>
+            <EditText
+                android:id="@+id/registro_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.8"
+                android:singleLine="true"
+                ></EditText>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.5"
-        android:fontFamily="Arial"
-        android:gravity="center_vertical"
-        android:text="Email"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:singleLine="true"></TextView>
-
-    <EditText
-        android:id="@+id/registro_email"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.8"
-        android:singleLine="true"></EditText>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"></LinearLayout>
+                ></LinearLayout>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.5"
-        android:fontFamily="Arial"
-        android:gravity="center_vertical"
-        android:text="Contraseña"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        ></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:fontFamily="Arial"
+                android:gravity="center_vertical"
+                android:text="Email"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:singleLine="true"></TextView>
 
-    <EditText
-        android:id="@+id/registro_passwd"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.8"
-        android:singleLine="true"
-        android:password="true"></EditText>
+            <EditText
+                android:id="@+id/registro_email"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.8"
+                android:singleLine="true"></EditText>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"></LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"></LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.5"
-        android:fontFamily="Arial"
-        android:gravity="center_vertical"
-        android:text="Repite Contraseña"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        ></TextView>
 
-    <EditText
-        android:id="@+id/registro_passwdre"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.8"
-        android:singleLine="true"
-        android:password="true"></EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:fontFamily="Arial"
+                android:gravity="center_vertical"
+                android:text="Contraseña"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                ></TextView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"></LinearLayout>
+            <EditText
+                android:id="@+id/registro_passwd"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.8"
+                android:singleLine="true"
+                android:password="true"></EditText>
 
-    <Button
-        android:id="@+id/btnregistrarse"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.8"
-        android:background="@color/azul"
-        android:fontFamily="Arial"
-        android:text="Registrarse"
-        android:textColor="@android:color/background_light"
-        android:textSize="20dp"
-        android:textStyle="bold"></Button>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"></LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:fontFamily="Arial"
+                android:gravity="center_vertical"
+                android:text="Repite Contraseña"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                ></TextView>
+
+            <EditText
+                android:id="@+id/registro_passwdre"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.8"
+                android:singleLine="true"
+                android:password="true"></EditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"></LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:fontFamily="Arial"
+                android:gravity="center_vertical"
+                android:text="Tags"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                ></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"></LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/registro_tags"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                ></androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"></LinearLayout>
+
+            <Button
+                android:id="@+id/btnregistrarse"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.8"
+                android:background="@color/azul"
+                android:fontFamily="Arial"
+                android:text="Registrarse"
+                android:textColor="@android:color/background_light"
+                android:textSize="20dp"
+                android:textStyle="bold"></Button>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
 
 </LinearLayout>

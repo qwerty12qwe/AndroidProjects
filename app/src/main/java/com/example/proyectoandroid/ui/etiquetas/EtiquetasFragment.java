@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -46,12 +47,15 @@ public class EtiquetasFragment extends Fragment implements View.OnKeyListener {
     private RecyclerView etiquetas;
     private EditText buscador;
     private List<Tag> data;
+    private View root;
 
     private boolean cargado;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_etiquetas, container, false);
+
+        this.root = root;
 
         etiquetas = root.findViewById(R.id.etiquetas);
         etiquetas.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -60,7 +64,6 @@ public class EtiquetasFragment extends Fragment implements View.OnKeyListener {
 
         buscador = root.findViewById(R.id.buscador_etiquetas);
         buscador.setOnKeyListener(this);
-
 
         loadJSON();
 
@@ -118,4 +121,5 @@ public class EtiquetasFragment extends Fragment implements View.OnKeyListener {
         }
         return false;
     }
+
 }

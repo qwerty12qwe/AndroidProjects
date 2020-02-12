@@ -9,7 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proyectoandroid.models.Tag;
 import com.example.proyectoandroid.models.User;
+import com.example.proyectoandroid.models.UsuarioTag;
 
 import java.util.List;
 
@@ -27,9 +29,9 @@ public class ReciclerViewAdapterUser extends RecyclerView.Adapter<ReciclerViewAd
         }
     }
 
-    public List<User> usuarios;
+    public List<UsuarioTag> usuarios;
 
-    public ReciclerViewAdapterUser(List<User> usuarios){
+    public ReciclerViewAdapterUser(List<UsuarioTag> usuarios){
         this.usuarios = usuarios;
     }
 
@@ -42,10 +44,18 @@ public class ReciclerViewAdapterUser extends RecyclerView.Adapter<ReciclerViewAd
     }
     @Override
     public void onBindViewHolder(ViewHolder holder,int position){
-        holder.usuario.setText(usuarios.get(position).getName());
-        holder.reputacion.setText(""+usuarios.get(position).getReputation());
+        holder.usuario.setText(usuarios.get(position).getUser().getName());
+        holder.reputacion.setText(""+usuarios.get(position).getUser().getReputation());
 
-        
+        for (Tag t: usuarios.get(position).getTags()) {
+            TextView tag = new TextView(holder.usuario.getContext());
+            tag.setText(t.getTitulo());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(10,5,10,5);
+            tag.setLayoutParams(params);
+            holder.tags.addView(tag);
+        }
+
     }
 
     @Override
