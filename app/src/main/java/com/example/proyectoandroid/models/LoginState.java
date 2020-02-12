@@ -1,9 +1,11 @@
 package com.example.proyectoandroid.models;
 
+import java.util.List;
+
 public class LoginState {
 
     private Integer estado;
-    private Usuario usuario;
+    private List<User> usuario;
 
     public Integer getEstado() {
         return estado;
@@ -13,11 +15,11 @@ public class LoginState {
         this.estado = estado;
     }
 
-    public Usuario getUsuario() {
+    public List<User> getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(List<User> usuario) {
         this.usuario = usuario;
     }
 

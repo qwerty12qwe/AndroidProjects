@@ -1,6 +1,13 @@
 package com.example.proyectoandroid.API;
 
 import com.example.proyectoandroid.models.LoginState;
+import com.example.proyectoandroid.models.PerfilActividades;
+import com.example.proyectoandroid.models.Question;
+import com.example.proyectoandroid.models.QuestionTags;
+import com.example.proyectoandroid.models.Tag;
+import com.example.proyectoandroid.models.User;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -26,4 +33,22 @@ public interface LoginApi {
             @Field("password") String password
     );
 
+    @GET("usuarios.php")
+    Call<LoginState> getusuarios(@Query("type") String type);
+
+
+    @FormUrlEncoded
+    @POST("perfil.php")
+    Call<PerfilActividades> getperfil(@Field("email") String email);
+
+
+    @GET("tags.php")
+    Call<List<Tag>> gettags();
+
+    @FormUrlEncoded
+    @POST("preguntas.php")
+    Call<List<QuestionTags>> getPreguntas(
+            @Field("order") String order,
+            @Field("email") String email
+    );
 }

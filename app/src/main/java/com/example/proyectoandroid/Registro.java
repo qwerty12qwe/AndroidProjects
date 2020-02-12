@@ -2,9 +2,7 @@ package com.example.proyectoandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +24,7 @@ import retrofit2.Retrofit;
 public class Registro extends AppCompatActivity implements View.OnClickListener{
 
     private Button registrarse;
-    private EditText nombre,email,contra;
+    private EditText nombre,email,contra,recontra;
 
     private ImageView img;
 
@@ -40,12 +38,11 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         nombre = findViewById(R.id.registro_name);
         email = findViewById(R.id.registro_email);
         contra = findViewById(R.id.registro_passwd);
+        recontra = findViewById(R.id.registro_passwdre);
 
         img.setOnClickListener(this);
 
         registrarse.setOnClickListener(this);
-
-
 
     }
 
@@ -57,9 +54,9 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
             }
         }
         else if(v == img){
-            finish();
             Intent it = new Intent(this,Login.class);
             startActivity(it);
+            finish();
         }
     }
 
@@ -96,7 +93,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
     public boolean validarform(){
 
-        String [] form = {nombre.getText().toString().trim(),email.getText().toString().trim(),contra.getText().toString()};
+        String [] form = {nombre.getText().toString().trim(),email.getText().toString().trim(),contra.getText().toString(),};
+
         String [] campos = {"nombre","email","contraseña"};
 
         String errores = "";
@@ -112,6 +110,16 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         String reg = "\\w{3,}@\\w{3,}.\\w{2,4}";
         Pattern patron = Pattern.compile(reg);
         Matcher encaja = patron.matcher(form[1]);
+
+        if (!encaja.find()){
+            flag = false;
+            errores+="Introduce un email valido\n";
+        }
+
+        if (!recontra.getText().toString().equals(form[2])){
+            flag = false;
+            errores+="Las contraseñas no son iguales\n";
+        }
 
         if (!errores.isEmpty())
             Toast.makeText(this, errores, Toast.LENGTH_SHORT).show();

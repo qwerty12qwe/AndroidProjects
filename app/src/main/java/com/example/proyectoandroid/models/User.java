@@ -2,30 +2,40 @@ package com.example.proyectoandroid.models;
 
 public class User {
 
-    private String nombre,descripcion;
-    private int reputacion;
+    private String name;
+    private String description;
+    private String email;
+    private int reputation;
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getReputacion() {
-        return reputacion;
+    public String getEmail() {
+        return email;
     }
 
-    public void setReputacion(int reputacion) {
-        this.reputacion = reputacion;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getReputation() {
+        return reputation;
+    }
+
+    public void setReputation(int reputation) {
+        this.reputation = reputation;
     }
 }

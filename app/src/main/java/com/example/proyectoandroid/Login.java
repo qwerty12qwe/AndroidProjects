@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     public static final String MYURL = "https://pruebabasesexternas.000webhostapp.com/stack/";
 
-//    411I5hM9zT
+    //    411I5hM9zT
 
 
     @Override
@@ -122,14 +122,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             if (recordar.isChecked()){
                                 SharedPreferences prefs = getSharedPreferences("ficherologin",Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = prefs.edit();
-                                editor.putString("email", data.getUsuario().getEmail());
+                                editor.putString("email", data.getUsuario().get(0).getEmail());
                                 editor.putString("password",tpassword);
                                 editor.commit();
                             }
 
                             Bundle b = new Bundle();
-                            b.putString("nombre",data.getUsuario().getName());
-                            b.putString("email",data.getUsuario().getEmail());
+                            b.putString("nombre",data.getUsuario().get(0).getName());
+                            b.putString("email",data.getUsuario().get(0).getEmail());
 
                             Intent it = new Intent(Login.this, Nav.class);
                             it.putExtras(b);

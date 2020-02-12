@@ -3,13 +3,13 @@ package com.example.proyectoandroid.models;
 public class Question {
 
     private int id;
-    private int visitas;
-    private int votos;
-    private int respuestas;
-    private String titulo;
-    private String descripcion;
-    private String usuario;
-
+    private int visites; // cantidad de visitas
+    private int votes; // cantidad de votos
+    private int responses; // cantidad de respuestas
+    private String title;
+    private String description;
+    private String user;
+    private String type;
 
     public int getId() {
         return id;
@@ -19,51 +19,59 @@ public class Question {
         this.id = id;
     }
 
-    public int getVisitas() {
-        return visitas;
+    public int getVisites() {
+        return visites;
     }
 
-    public void setVisitas(int visitas) {
-        this.visitas = visitas;
+    public void setVisites(int visites) {
+        this.visites = visites;
     }
 
-    public int getVotos() {
-        return votos;
+    public int getVotes() {
+        return votes;
     }
 
-    public void setVotos(int votos) {
-        this.votos = votos;
+    public void setVotes(int votes) {
+        this.votes = votes;
     }
 
-    public int getRespuestas() {
-        return respuestas;
+    public int getResponses() {
+        return responses;
     }
 
-    public void setRespuestas(int respuestas) {
-        this.respuestas = respuestas;
+    public void setResponses(int responses) {
+        this.responses = responses;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getUser() {
+        return user;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

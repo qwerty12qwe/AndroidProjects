@@ -2,7 +2,7 @@ package com.example.proyectoandroid.models;
 
 public class Tag {
 
-    private int id;
+    private int id,cantidaddepreguntas;
     private String titulo,descripcion;
 
     public int getId() {
@@ -30,7 +30,6 @@ public class Tag {
     }
 
     public int getCantidad(){
-//        Consulta con la cantidad de tags
-        return 0;
+        return cantidaddepreguntas;
     }
 }

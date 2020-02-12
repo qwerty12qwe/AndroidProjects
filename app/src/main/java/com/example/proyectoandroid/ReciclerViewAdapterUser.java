@@ -3,6 +3,7 @@ package com.example.proyectoandroid;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +16,8 @@ import java.util.List;
 public class ReciclerViewAdapterUser extends RecyclerView.Adapter<ReciclerViewAdapterUser.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView usuario,reputacion,tags;
+        private TextView usuario,reputacion;
+        private LinearLayout tags;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -40,9 +42,10 @@ public class ReciclerViewAdapterUser extends RecyclerView.Adapter<ReciclerViewAd
     }
     @Override
     public void onBindViewHolder(ViewHolder holder,int position){
-        holder.usuario.setText(usuarios.get(position).getNombre());
-        holder.reputacion.setText(""+usuarios.get(position).getReputacion());
-        holder.tags.setText("tags");
+        holder.usuario.setText(usuarios.get(position).getName());
+        holder.reputacion.setText(""+usuarios.get(position).getReputation());
+
+        
     }
 
     @Override

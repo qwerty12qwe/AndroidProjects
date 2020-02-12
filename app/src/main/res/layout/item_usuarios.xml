@@ -37,13 +37,14 @@
                 android:textSize="18sp"
                 android:textStyle="bold"></TextView>
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/tags_usuario"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:gravity="bottom"
-                android:text="prefered tags"></TextView>
+                android:text="prefered tags"
+                android:orientation="horizontal"></LinearLayout>
 
         </LinearLayout>
 

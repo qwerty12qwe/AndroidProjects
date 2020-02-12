@@ -22,6 +22,7 @@
             android:weightSum="2">
 
             <TextView
+                android:id="@+id/perfil_reputacion"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -49,6 +50,7 @@
             android:weightSum="3">
 
             <TextView
+                android:id="@+id/perfil_nombre"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -59,6 +61,7 @@
                 android:textStyle="bold"></TextView>
 
             <TextView
+                android:id="@+id/perfil_descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
@@ -86,6 +89,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/perfil_actividad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7.5">

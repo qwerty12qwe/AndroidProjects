@@ -15,10 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 public class Nav extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private static Bundle b;
+    private TextView usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +42,18 @@ public class Nav extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        b = getIntent().getExtras();
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation, menu);
+        usuario = findViewById(R.id.nombre_de_usuario);
+        usuario.setText(b.getString("nombre"));
         return true;
     }
 
@@ -53,5 +62,9 @@ public class Nav extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public static Bundle getBund(){
+        return b;
     }
 }
