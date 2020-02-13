@@ -1,39 +1,28 @@
 package com.example.proyectoandroid.ui.home;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Point;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectoandroid.API.LoginApi;
 import com.example.proyectoandroid.Login;
-import com.example.proyectoandroid.MakeQuestion;
 import com.example.proyectoandroid.Nav;
 import com.example.proyectoandroid.R;
 import com.example.proyectoandroid.ReciclerViewAdapterQuestion;
-import com.example.proyectoandroid.models.LoginState;
-import com.example.proyectoandroid.models.Question;
 import com.example.proyectoandroid.models.QuestionTags;
+import com.example.proyectoandroid.ui.pregunta.Pregunta;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -66,7 +55,7 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
 
         order = "";
 
-        String [] values = {"","Filtro2"};
+        String [] values = {"Interesantes","Filtro2"};
         filtros.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item,values));
 
         loadJSON();
@@ -77,8 +66,12 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
     @Override
     public void onClick(View v){
         if (v == preguntar){
-            Intent it = new Intent(getActivity(), MakeQuestion.class);
-            startActivity(it);
+            Pregunta secFrag = new Pregunta();
+            FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+            fragTransaction.replace(R.id.nav_host_fragment,secFrag);
+            fragTransaction.addToBackStack(null);
+            fragTransaction.commit();
+
         }
 
 

@@ -1,24 +1,28 @@
-package com.example.proyectoandroid;
+package com.example.proyectoandroid.ui.pregunta;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.proyectoandroid.API.LoginApi;
-import com.example.proyectoandroid.models.Question;
-import com.example.proyectoandroid.models.QuestionTags;
-import com.example.proyectoandroid.models.Tag;
-import com.example.proyectoandroid.models.User;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.proyectoandroid.API.LoginApi;
+import com.example.proyectoandroid.Login;
+import com.example.proyectoandroid.Nav;
+import com.example.proyectoandroid.R;
+import com.example.proyectoandroid.ReciclerViewAdapterActividad;
+import com.example.proyectoandroid.ReciclerViewAdapterTagSelector;
+import com.example.proyectoandroid.models.Tag;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,7 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MakeQuestion extends AppCompatActivity implements View.OnClickListener{
+public class Pregunta extends Fragment implements View.OnClickListener{
 
     private RecyclerView reci;
     private ReciclerViewAdapterTagSelector tags;
@@ -34,22 +38,25 @@ public class MakeQuestion extends AppCompatActivity implements View.OnClickListe
     private EditText titulo,descripcion;
     private boolean cargado;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_question);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
 
-        reci = findViewById(R.id.question_tags_selector);
-        reci.setLayoutManager(new LinearLayoutManager(this));
+        View root = inflater.inflate(R.layout.fragment_pregunta, container, false);
 
-        preguntar = findViewById(R.id.make_question_btnpreguntar);
-        titulo = findViewById(R.id.make_question_titulo);
-        descripcion = findViewById(R.id.make_question_descripcion);
+        reci = root.findViewById(R.id.question_tags_selector2);
+        reci.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        preguntar = root.findViewById(R.id.make_question_btnpreguntar2);
+        titulo = root.findViewById(R.id.make_question_titulo2);
+        descripcion = root.findViewById(R.id.make_question_descripcion2);
         cargado = false;
         cargarTags();
         preguntar.setOnClickListener(this);
-    }
 
+        cargarTags();
+
+        return root;
+    }
     private void cargarTags() {
 
         Retrofit retrofit = Login.getretrofit();
@@ -68,7 +75,7 @@ public class MakeQuestion extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFailure(Call<List<Tag>> call, Throwable t) {
-                Toast.makeText(MakeQuestion.this, "error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -94,7 +101,7 @@ public class MakeQuestion extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFailure(Call<List<Tag>> call, Throwable t) {
-                Toast.makeText(MakeQuestion.this, "error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -116,7 +123,7 @@ public class MakeQuestion extends AppCompatActivity implements View.OnClickListe
         }
 
         if (!errores.isEmpty())
-            Toast.makeText(this, errores.trim(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), errores.trim(), Toast.LENGTH_SHORT).show();
         return flag;
     }
 
@@ -125,8 +132,13 @@ public class MakeQuestion extends AppCompatActivity implements View.OnClickListe
         if (v == preguntar && cargado){
             if (comprobarform()){
                 insertarPregunta();
-                finish();
+                FragmentManager mana = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+                fragTransaction.remove(this);
+                fragTransaction.commit();
+                mana.popBackStack();
             }
         }
     }
+
 }

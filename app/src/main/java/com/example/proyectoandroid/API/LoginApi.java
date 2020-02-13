@@ -57,7 +57,7 @@ public interface LoginApi {
     );
 
     @FormUrlEncoded
-    @POST("pregunta.php")
+    @POST("realizarpregunta.php")
     Call<List<Tag>> setPregunta(
             @Field("email") String email,
             @Field("titulo") String title,

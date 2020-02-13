@@ -51,6 +51,7 @@ public class ReciclerViewAdapterQuestion extends RecyclerView.Adapter<ReciclerVi
         holder.respuestas.setText(""+preguntas.get(position).getQuest().getResponses()+" respuestas");
         holder.visitas.setText(""+preguntas.get(position).getQuest().getVisites()+" vistas");
 
+        holder.etiquetas.removeAllViews();
         for (Tag t : preguntas.get(position).getTags()) {
             TextView miTextView = new TextView(holder.titulo.getContext());
             miTextView.setText(t.getTitulo());

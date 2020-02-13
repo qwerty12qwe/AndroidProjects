@@ -28,8 +28,8 @@ public class ReciclerViewAdapterTagSelector extends RecyclerView.Adapter<Recicle
         }
     }
 
-    List<Tag> etiquetas;
-    List<Integer> idsseleccionados;
+    public List<Tag> etiquetas;
+    public List<Integer> idsseleccionados;
 
     public ReciclerViewAdapterTagSelector(List<Tag> etiquetas){
         this.etiquetas = etiquetas;

@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_slideshow"
             app:destination="@id/nav_usuarios" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_pregunta"
+            app:destination="@id/nav_pregunta" />
     </fragment>
 
     <fragment
@@ -42,6 +45,13 @@
         android:name="com.example.proyectoandroid.ui.perfil.PerfilFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_perfil" />
+
+
+    <fragment
+        android:id="@+id/nav_pregunta"
+        android:name="com.example.proyectoandroid.ui.pregunta.Pregunta"
+        android:label="otro"
+        tools:layout="@layout/fragment_pregunta" />
 
 <!--    <fragment-->
 <!--        android:id="@+id/nav_share"-->

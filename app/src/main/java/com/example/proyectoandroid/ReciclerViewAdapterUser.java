@@ -11,9 +11,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectoandroid.models.Tag;
-import com.example.proyectoandroid.models.User;
 import com.example.proyectoandroid.models.UsuarioTag;
 import com.example.proyectoandroid.ui.perfil.PerfilFragment;
+import com.example.proyectoandroid.ui.pregunta.Pregunta;
 import com.example.proyectoandroid.ui.usuarios.UsuariosFragment;
 
 import java.util.List;
@@ -63,7 +63,6 @@ public class ReciclerViewAdapterUser extends RecyclerView.Adapter<ReciclerViewAd
         }
 
         holder.usuario.setOnClickListener(v ->{
-
             PerfilFragment secFrag = new PerfilFragment(usuarios.get(position).getUser().getEmail());
             FragmentTransaction fragTransaction = f.getFragmentManager().beginTransaction();
             fragTransaction.replace(R.id.nav_host_fragment,secFrag);
