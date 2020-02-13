@@ -7,17 +7,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectoandroid.models.Tag;
 import com.example.proyectoandroid.models.User;
 import com.example.proyectoandroid.models.UsuarioTag;
+import com.example.proyectoandroid.ui.perfil.PerfilFragment;
+import com.example.proyectoandroid.ui.usuarios.UsuariosFragment;
 
 import java.util.List;
 
-public class ReciclerViewAdapterUser extends RecyclerView.Adapter<ReciclerViewAdapterUser.ViewHolder> {
+public class ReciclerViewAdapterUser extends RecyclerView.Adapter<ReciclerViewAdapterUser.ViewHolder>{
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView usuario,reputacion;
         private LinearLayout tags;
 
@@ -27,12 +30,15 @@ public class ReciclerViewAdapterUser extends RecyclerView.Adapter<ReciclerViewAd
             reputacion = itemView.findViewById(R.id.reputacion_usuario);
             tags = itemView.findViewById(R.id.tags_usuario);
         }
+
     }
 
     public List<UsuarioTag> usuarios;
+    public UsuariosFragment f;
 
-    public ReciclerViewAdapterUser(List<UsuarioTag> usuarios){
+    public ReciclerViewAdapterUser(List<UsuarioTag> usuarios, UsuariosFragment f){
         this.usuarios = usuarios;
+        this.f = f;
     }
 
     @NonNull
@@ -55,6 +61,16 @@ public class ReciclerViewAdapterUser extends RecyclerView.Adapter<ReciclerViewAd
             tag.setLayoutParams(params);
             holder.tags.addView(tag);
         }
+
+        holder.usuario.setOnClickListener(v ->{
+
+            PerfilFragment secFrag = new PerfilFragment(usuarios.get(position).getUser().getEmail());
+            FragmentTransaction fragTransaction = f.getFragmentManager().beginTransaction();
+            fragTransaction.replace(R.id.nav_host_fragment,secFrag);
+            fragTransaction.addToBackStack(null);
+            fragTransaction.commit();
+
+        });
 
     }
 

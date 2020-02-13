@@ -5,10 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -31,12 +28,12 @@ public class ReciclerViewAdapterTagSelector extends RecyclerView.Adapter<Recicle
         }
     }
 
-    public List<Tag> etiquetas;
-    List<Integer> ids;
+    List<Tag> etiquetas;
+    List<Integer> idsseleccionados;
 
     public ReciclerViewAdapterTagSelector(List<Tag> etiquetas){
         this.etiquetas = etiquetas;
-        ids = new ArrayList<>();
+        idsseleccionados = new ArrayList<>();
     }
 
     @NonNull
@@ -52,13 +49,9 @@ public class ReciclerViewAdapterTagSelector extends RecyclerView.Adapter<Recicle
         holder.titulo.setText(etiquetas.get(position).getTitulo());
         holder.titulo.setOnClickListener(v -> {
             if (holder.titulo.isChecked())
-                ids.add(etiquetas.get(position).getId());
+                idsseleccionados.add(etiquetas.get(position).getId());
             else
-                ids.removeIf(x -> x==etiquetas.get(position).getId());
-
-            for (Integer t : ids) {
-                Log.e("printear: ",""+t);
-            }
+                idsseleccionados.removeIf(x -> x==etiquetas.get(position).getId());
 
         });
     }

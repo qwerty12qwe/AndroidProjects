@@ -80,7 +80,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
         String [] form = {nombre.getText().toString().trim(),email.getText().toString().trim(),contra.getText().toString()};
 
-        Call<LoginState> call = restClient.registrologin(form[0],form[1],form[2],selector.ids);
+        Call<LoginState> call = restClient.registrologin(form[0],form[1],form[2],selector.idsseleccionados);
 
         call.enqueue(new Callback<LoginState>() {
 
@@ -156,7 +156,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
             errores+="Las contraseñas no son iguales\n";
         }
 
-        if (selector.ids.size() == 0){
+        if (selector.idsseleccionados.size() == 0){
             flag = false;
             errores+="Selecciona almenos una etiqueta\n";
         }

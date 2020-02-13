@@ -40,6 +40,16 @@ public class PerfilFragment extends Fragment implements View.OnClickListener{
 
     private TextView nombre,descripcion,reputacion;
 
+    private String email;
+
+    public PerfilFragment(){
+        email =  Nav.getBund().getString("email");
+
+    }
+    public PerfilFragment(String ema){
+            email = ema;
+    }
+
 
     private ReciclerViewAdapterActividad recicetiquetas;
 
@@ -75,7 +85,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener{
 
         LoginApi restClient = retrofit.create(LoginApi.class);
 
-        Call<PerfilActividades> call = restClient.getperfil(Nav.getBund().getString("email"));
+        Call<PerfilActividades> call = restClient.getperfil(email);
 
         call.enqueue(new Callback<PerfilActividades>() {
             @Override

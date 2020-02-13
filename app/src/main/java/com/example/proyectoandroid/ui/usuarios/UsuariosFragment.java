@@ -85,7 +85,7 @@ public class UsuariosFragment extends Fragment implements  View.OnClickListener{
             public void onResponse(Call<List<UsuarioTag>> call, Response<List<UsuarioTag>> response) {
                 List<UsuarioTag> data = response.body();
 
-                adapterusers = new ReciclerViewAdapterUser(data);
+                adapterusers = new ReciclerViewAdapterUser(data,UsuariosFragment.this);
                 mostrarlista.setAdapter(adapterusers);
             }
 

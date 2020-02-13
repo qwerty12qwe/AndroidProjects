@@ -7,10 +7,12 @@ import com.example.proyectoandroid.models.QuestionTags;
 import com.example.proyectoandroid.models.Tag;
 import com.example.proyectoandroid.models.User;
 import com.example.proyectoandroid.models.UsuarioTag;
+import com.google.gson.annotations.JsonAdapter;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -52,5 +54,14 @@ public interface LoginApi {
     Call<List<QuestionTags>> getPreguntas(
             @Field("order") String order,
             @Field("email") String email
+    );
+
+    @FormUrlEncoded
+    @POST("pregunta.php")
+    Call<List<Tag>> setPregunta(
+            @Field("email") String email,
+            @Field("titulo") String title,
+            @Field("descripcion") String description,
+            @Field("ids[]") List<Integer> ids
     );
 }

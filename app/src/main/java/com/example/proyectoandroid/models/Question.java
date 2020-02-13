@@ -1,13 +1,18 @@
 package com.example.proyectoandroid.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Question {
 
     private int id;
     private int visites; // cantidad de visitas
     private int votes; // cantidad de votos
     private int responses; // cantidad de respuestas
+    @SerializedName("title")
     private String title;
+    @SerializedName("description")
     private String description;
+    @SerializedName("user")
     private String user;
     private String type;
 

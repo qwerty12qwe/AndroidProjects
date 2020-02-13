@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
 
         order = "";
 
-        String [] values = {"Filtro1","Filtro2"};
+        String [] values = {"","Filtro2"};
         filtros.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item,values));
 
         loadJSON();
