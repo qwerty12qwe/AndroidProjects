@@ -5,19 +5,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectoandroid.models.QuestionTags;
 import com.example.proyectoandroid.models.Tag;
+import com.example.proyectoandroid.ui.home.HomeFragment;
+import com.example.proyectoandroid.ui.pregunta_respuestas.PreguntaRespuestas;
 
 import java.util.List;
 
 public class ReciclerViewAdapterQuestion extends RecyclerView.Adapter<ReciclerViewAdapterQuestion.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView titulo,descripcion,usuario,visitas,votos,respuestas;
+        private TextView titulo,visitas,votos,respuestas;
         private LinearLayout etiquetas;
 
         public ViewHolder(View itemView){
@@ -31,9 +35,11 @@ public class ReciclerViewAdapterQuestion extends RecyclerView.Adapter<ReciclerVi
     }
 
     public List<QuestionTags> preguntas;
+    public HomeFragment home;
 
-    public ReciclerViewAdapterQuestion(List<QuestionTags> preguntas){
+    public ReciclerViewAdapterQuestion(List<QuestionTags> preguntas, HomeFragment home){
         this.preguntas = preguntas;
+        this.home = home;
     }
 
     @NonNull
@@ -60,6 +66,14 @@ public class ReciclerViewAdapterQuestion extends RecyclerView.Adapter<ReciclerVi
             miTextView.setLayoutParams(params);
             holder.etiquetas.addView(miTextView);
         }
+
+        holder.titulo.setOnClickListener(v  -> {
+            PreguntaRespuestas secFrag = new PreguntaRespuestas(preguntas.get(position).getQuest().getId(),home);
+            FragmentTransaction fragTransaction = home.getFragmentManager().beginTransaction();
+            fragTransaction.replace(R.id.nav_host_fragment,secFrag);
+            fragTransaction.addToBackStack(null);
+            fragTransaction.commit();
+        });
     }
 
     @Override

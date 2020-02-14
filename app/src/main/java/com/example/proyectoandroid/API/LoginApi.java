@@ -3,10 +3,12 @@ package com.example.proyectoandroid.API;
 import com.example.proyectoandroid.models.LoginState;
 import com.example.proyectoandroid.models.PerfilActividades;
 import com.example.proyectoandroid.models.Question;
+import com.example.proyectoandroid.models.QuestionResponses;
 import com.example.proyectoandroid.models.QuestionTags;
 import com.example.proyectoandroid.models.Tag;
 import com.example.proyectoandroid.models.User;
 import com.example.proyectoandroid.models.UsuarioTag;
+import com.example.proyectoandroid.ui.pregunta_respuestas.PreguntaRespuestas;
 import com.google.gson.annotations.JsonAdapter;
 
 import java.util.List;
@@ -63,5 +65,11 @@ public interface LoginApi {
             @Field("titulo") String title,
             @Field("descripcion") String description,
             @Field("ids[]") List<Integer> ids
+    );
+
+    @FormUrlEncoded
+    @POST("respuestasdepregunta.php")
+    Call<QuestionResponses> getRespuestas(
+            @Field("id") int idQuestion
     );
 }

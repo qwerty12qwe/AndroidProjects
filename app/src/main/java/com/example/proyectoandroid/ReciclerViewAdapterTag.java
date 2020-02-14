@@ -47,7 +47,7 @@ public class ReciclerViewAdapterTag extends RecyclerView.Adapter<ReciclerViewAda
     public void onBindViewHolder(ViewHolder holder,int position){
         holder.titulo.setText(etiquetas.get(position).getTitulo());
         holder.descripcion.setText(etiquetas.get(position).getDescripcion());
-        holder.cantidad.setText(etiquetas.get(position).getCantidad()+" preguntas");
+        holder.cantidad.setText(etiquetas.get(position).getCantidad()+" respuestas");
 
         holder.scroll.setOnTouchListener(this);
     }

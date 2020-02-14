@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -46,19 +47,37 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         recicler = root.findViewById(R.id.preguntas);
-        recicler.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         filtros = root.findViewById(R.id.filtros);
         preguntar = root.findViewById(R.id.btnpreguntar);
 
-        preguntar.setOnClickListener(this);
+        recicler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        order = "interesting";
+        loadJSON();
 
-        order = "";
-
-        String [] values = {"Interesantes","Filtro2"};
+        String [] values = {"De interes","Lo mejor"};
         filtros.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item,values));
 
-        loadJSON();
+        preguntar.setOnClickListener(this);
+        filtros.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        order = "interesting";
+                        break;
+                    case 1:
+                        order = "hot";
+                        break;
+                }
+                loadJSON();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         return root;
     }
@@ -71,7 +90,6 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
             fragTransaction.replace(R.id.nav_host_fragment,secFrag);
             fragTransaction.addToBackStack(null);
             fragTransaction.commit();
-
         }
 
 
@@ -87,9 +105,9 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
         call.enqueue(new Callback<List<QuestionTags>>() {
             @Override
             public void onResponse(Call<List<QuestionTags>> call, Response<List<QuestionTags>> response) {
-                List<QuestionTags> d= response.body();
+                List<QuestionTags> d = response.body();
 
-                adapter = new ReciclerViewAdapterQuestion(d);
+                adapter = new ReciclerViewAdapterQuestion(d,HomeFragment.this);
                 recicler.setAdapter(adapter);
             }
 

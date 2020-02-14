@@ -53,6 +53,13 @@
         android:label="otro"
         tools:layout="@layout/fragment_pregunta" />
 
+
+    <fragment
+        android:id="@+id/nav_pregunta_respuestas"
+        android:name="com.example.proyectoandroid.ui.pregunta_respuestas.PreguntaRespuestas"
+        android:label="otro"
+        tools:layout="@layout/fragment_pregunta_respuestas" />
+
 <!--    <fragment-->
 <!--        android:id="@+id/nav_share"-->
 <!--        android:name="com.example.proyectoandroid.ui.share.ShareFragment"-->

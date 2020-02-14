@@ -15,24 +15,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#ffffffff"
                 android:orientation="horizontal"
                 android:weightSum="6">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    >
+                    android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/pregunta_respuestas_upvote"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="upvote" />
+                        android:layout_height="60dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/upvote"
+                        />
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/pregunta_respuestas_votos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -40,30 +42,34 @@
                         android:textSize="20dp" />
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/pregunta_respuestas_downvote"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="downvote" />
+                        android:background="@drawable/downvote"
+                        android:layout_height="60dp"
+                        android:layout_margin="5dp"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:layout_weight="5"
+                    android:orientation="vertical"
                     android:weightSum="4">
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/pregunta_respuestas_titulo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Titulo"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="18sp" />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/pregunta_respuestas_cuerpo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -74,10 +80,24 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/pregunta_respuesta_n_respuestas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Respuestas"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pregunta_respuestas_respuestas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
+
         </LinearLayout>
     </ScrollView>
 
