@@ -8,9 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectoandroid.models.Question;
+import com.example.proyectoandroid.ui.perfil.PerfilFragment;
+import com.example.proyectoandroid.ui.pregunta_respuestas.PreguntaRespuestas;
 
 import java.util.List;
 
@@ -28,9 +31,11 @@ public class ReciclerViewAdapterActividad extends RecyclerView.Adapter<ReciclerV
     }
 
     public List<Question> preguntas;
+    private PerfilFragment perfil;
 
-    public ReciclerViewAdapterActividad(List<Question> preguntas){
+    public ReciclerViewAdapterActividad(List<Question> preguntas, PerfilFragment perfil){
         this.preguntas = preguntas;
+        this.perfil = perfil;
     }
 
     @NonNull
@@ -47,6 +52,15 @@ public class ReciclerViewAdapterActividad extends RecyclerView.Adapter<ReciclerV
 
         if (preguntas.get(position).getType().equals("question"))
             holder.tipo.setText("P");
+
+        holder.titulo.setOnClickListener(v -> {
+            PreguntaRespuestas secFrag = new PreguntaRespuestas(preguntas.get(position).getId());
+            FragmentTransaction fragTransaction = perfil.getFragmentManager().beginTransaction();
+            fragTransaction.replace(R.id.nav_host_fragment,secFrag);
+            fragTransaction.addToBackStack(null);
+            fragTransaction.commit();
+        });
+
     }
 
     @Override

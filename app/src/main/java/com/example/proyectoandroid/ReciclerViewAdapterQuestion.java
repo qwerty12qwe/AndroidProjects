@@ -68,7 +68,7 @@ public class ReciclerViewAdapterQuestion extends RecyclerView.Adapter<ReciclerVi
         }
 
         holder.titulo.setOnClickListener(v  -> {
-            PreguntaRespuestas secFrag = new PreguntaRespuestas(preguntas.get(position).getQuest().getId(),home);
+            PreguntaRespuestas secFrag = new PreguntaRespuestas(preguntas.get(position).getQuest().getId());
             FragmentTransaction fragTransaction = home.getFragmentManager().beginTransaction();
             fragTransaction.replace(R.id.nav_host_fragment,secFrag);
             fragTransaction.addToBackStack(null);

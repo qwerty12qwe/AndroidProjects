@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectoandroid.models.Question;
 import com.example.proyectoandroid.ui.home.HomeFragment;
+import com.example.proyectoandroid.ui.pregunta_respuestas.PreguntaRespuestas;
 
 import java.util.List;
 
@@ -37,9 +38,9 @@ public class ReciclerViewAdapterResponses extends RecyclerView.Adapter<ReciclerV
     }
 
     public List<Question> respuestas;
-    private HomeFragment h;
+    private PreguntaRespuestas h;
 
-    public ReciclerViewAdapterResponses(List<Question> preguntas, HomeFragment h){
+    public ReciclerViewAdapterResponses(List<Question> preguntas, PreguntaRespuestas h){
         this.respuestas = preguntas;
         this.h = h;
     }

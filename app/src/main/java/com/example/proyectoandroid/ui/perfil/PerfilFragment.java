@@ -98,7 +98,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener{
 
                 try {
                     List<Question> q = data.getActividad();
-                    recicetiquetas = new ReciclerViewAdapterActividad(q);
+                    recicetiquetas = new ReciclerViewAdapterActividad(q,PerfilFragment.this);
                     reci.setAdapter(recicetiquetas);
                 }
                 catch (Exception e){

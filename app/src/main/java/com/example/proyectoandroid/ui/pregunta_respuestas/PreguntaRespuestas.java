@@ -39,10 +39,8 @@ public class PreguntaRespuestas extends Fragment implements View.OnClickListener
     private ReciclerViewAdapterResponses respuestas;
     private RecyclerView lay_resp;
 
-    private HomeFragment h;
-    public PreguntaRespuestas(int idPregunta, HomeFragment home){
+    public PreguntaRespuestas(int idPregunta){
         this.idPregunta = idPregunta;
-        h = home;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -61,7 +59,7 @@ public class PreguntaRespuestas extends Fragment implements View.OnClickListener
         enviarresp = root.findViewById(R.id.pregunta_respuestas_btnenviar);
 
         lay_resp = root.findViewById(R.id.pregunta_respuestas_respuestas);
-        lay_resp.setLayoutManager(new LinearLayoutManager(h.getActivity()));
+        lay_resp.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         enviarresp.setOnClickListener(this);
@@ -88,7 +86,7 @@ public class PreguntaRespuestas extends Fragment implements View.OnClickListener
 
                 n_respuestas.setText(resp.getResponses().size()+" Respuestas");
 
-                respuestas = new ReciclerViewAdapterResponses(resp.getResponses(),h);
+                respuestas = new ReciclerViewAdapterResponses(resp.getResponses(),PreguntaRespuestas.this);
                 lay_resp.setAdapter(respuestas);
             }
 
