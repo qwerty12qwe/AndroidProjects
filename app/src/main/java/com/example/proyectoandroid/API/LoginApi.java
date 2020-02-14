@@ -68,6 +68,14 @@ public interface LoginApi {
     );
 
     @FormUrlEncoded
+    @POST("respuesta.php")
+    Call<List<Integer>> setRespuesta(
+        @Field("id") int idPregunta,
+        @Field("descripcion") String cuerpo,
+        @Field("usuario") String usuario
+    );
+
+    @FormUrlEncoded
     @POST("respuestasdepregunta.php")
     Call<QuestionResponses> getRespuestas(
             @Field("id") int idQuestion
