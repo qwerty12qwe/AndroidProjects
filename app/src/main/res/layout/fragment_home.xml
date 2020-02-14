@@ -58,4 +58,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/home_fragment_nuevos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="Nuevos" />
+
+        <Button
+            android:id="@+id/home_fragment_antiguos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="Antiguos" />
+    </LinearLayout>
 </LinearLayout>

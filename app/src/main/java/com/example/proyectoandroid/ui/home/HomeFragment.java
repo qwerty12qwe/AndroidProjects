@@ -21,10 +21,13 @@ import com.example.proyectoandroid.Login;
 import com.example.proyectoandroid.Nav;
 import com.example.proyectoandroid.R;
 import com.example.proyectoandroid.ReciclerViewAdapterQuestion;
+import com.example.proyectoandroid.models.Question;
 import com.example.proyectoandroid.models.QuestionTags;
 import com.example.proyectoandroid.ui.pregunta.Pregunta;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,10 +40,12 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
     private RecyclerView recicler;
     private ReciclerViewAdapterQuestion adapter;
     private Spinner filtros;
-    private Button preguntar;
+    private Button preguntar,pagnuevos,pagantiguos;
 
     private String order;
+    private int paginacion;
 
+    private List<QuestionTags> listapreguntas;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +55,13 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
 
         filtros = root.findViewById(R.id.filtros);
         preguntar = root.findViewById(R.id.btnpreguntar);
+
+        paginacion = 0;
+        pagnuevos = root.findViewById(R.id.home_fragment_nuevos);
+        pagantiguos = root.findViewById(R.id.home_fragment_antiguos);
+
+        pagnuevos.setOnClickListener(this);
+        pagantiguos.setOnClickListener(this);
 
         recicler.setLayoutManager(new LinearLayoutManager(getActivity()));
         order = "interesting";
@@ -91,6 +103,16 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
             fragTransaction.addToBackStack(null);
             fragTransaction.commit();
         }
+        else if(v == pagnuevos || v == pagantiguos){
+            if(v == pagantiguos){
+                paginacion++;
+            }
+            else{
+                paginacion--;
+            }
+
+            setPreguntas();
+        }
 
 
     }
@@ -105,10 +127,8 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
         call.enqueue(new Callback<List<QuestionTags>>() {
             @Override
             public void onResponse(Call<List<QuestionTags>> call, Response<List<QuestionTags>> response) {
-                List<QuestionTags> d = response.body();
-
-                adapter = new ReciclerViewAdapterQuestion(d,HomeFragment.this);
-                recicler.setAdapter(adapter);
+                listapreguntas = response.body();
+                setPreguntas();
             }
 
             @Override
@@ -119,5 +139,35 @@ public class HomeFragment extends Fragment implements  View.OnClickListener{
         });
     }
 
+    public void setPreguntas(){
+        int cont = paginacion * 10;
+
+
+        List<QuestionTags> questions = new ArrayList<>();
+        for (int i = cont;i < cont+10; i++){
+            if (i < listapreguntas.size()){
+                questions.add(listapreguntas.get(i));
+            }
+            else{
+                break;
+            }
+        }
+
+        if (paginacion == 0)
+            pagnuevos.setEnabled(false);
+        else
+            pagnuevos.setEnabled(true);
+
+        if (cont +10  > listapreguntas.size()){
+            pagantiguos.setEnabled(false);
+        }
+        else{
+            pagantiguos.setEnabled(true);
+        }
+
+
+        adapter = new ReciclerViewAdapterQuestion(questions,HomeFragment.this);
+        recicler.setAdapter(adapter);
+    }
 
 }
