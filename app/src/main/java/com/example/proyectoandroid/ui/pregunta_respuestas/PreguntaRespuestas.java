@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,7 @@ import com.example.proyectoandroid.ReciclerViewAdapterResponses;
 import com.example.proyectoandroid.models.QuestionResponses;
 import com.example.proyectoandroid.models.Tag;
 import com.example.proyectoandroid.ui.home.HomeFragment;
+import com.example.proyectoandroid.ui.pregunta.Pregunta;
 
 import java.util.List;
 
@@ -61,9 +63,12 @@ public class PreguntaRespuestas extends Fragment implements View.OnClickListener
         lay_resp = root.findViewById(R.id.pregunta_respuestas_respuestas);
         lay_resp.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
+        upvote.setOnClickListener(this);
+        downvote.setOnClickListener(this);
         enviarresp.setOnClickListener(this);
         cargarFrag();
+
+
 
         return root;
     }
@@ -72,7 +77,7 @@ public class PreguntaRespuestas extends Fragment implements View.OnClickListener
         Retrofit retrofit = Login.getretrofit();
 
         LoginApi restClient = retrofit.create(LoginApi.class);
-        Call<QuestionResponses> call = restClient.getRespuestas(idPregunta);
+        Call<QuestionResponses> call = restClient.getRespuestas(idPregunta,Nav.getBund().getString("email"));
 
         call.enqueue(new Callback<QuestionResponses>() {
             @Override
@@ -83,6 +88,16 @@ public class PreguntaRespuestas extends Fragment implements View.OnClickListener
                 titulo.setText(resp.getQuest().getTitle());
                 descripcion.setText(resp.getQuest().getDescription());
                 n_votos.setText(""+resp.getQuest().getVotes());
+
+
+                // 0 = novote
+                // 1 = upvote
+                // 2 = downvote
+                if (resp.getQuest().getVoted() == 1)
+                    upvote.setBackgroundResource(R.drawable.upvotevotado);
+                else if(resp.getQuest().getVoted() == 2)
+                    downvote.setBackgroundResource(R.drawable.downvotevotado);
+
 
                 n_respuestas.setText(resp.getResponses().size()+" Respuestas");
 
@@ -116,6 +131,35 @@ public class PreguntaRespuestas extends Fragment implements View.OnClickListener
         });
     }
 
+    public void votarTipodePost(int tipodepost,String tipo){
+
+        Retrofit retrofit = Login.getretrofit();
+
+        LoginApi restClient = retrofit.create(LoginApi.class);
+
+        Call<List<Integer>> call = restClient.votar(tipodepost, Nav.getBund().getString("email"),tipo);
+        call.enqueue(new Callback<List<Integer>>() {
+            @Override
+            public void onResponse(Call<List<Integer>> call, Response<List<Integer>> response) {
+
+                getFragmentManager().popBackStack();
+
+                PreguntaRespuestas secFrag = new PreguntaRespuestas(idPregunta);
+
+                FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+
+                fragTransaction.replace(R.id.nav_host_fragment,secFrag);
+                fragTransaction.addToBackStack(null);
+                fragTransaction.commit();
+            }
+
+            @Override
+            public void onFailure(Call<List<Integer>> call, Throwable t) {
+                Toast.makeText(getActivity(), "error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 
 
     public boolean comprobarform(){
@@ -142,6 +186,15 @@ public class PreguntaRespuestas extends Fragment implements View.OnClickListener
                 insertarRespuesta();
             }
         }
+
+        else if(v == upvote){
+            votarTipodePost(idPregunta,"up");
+
+        }
+        else if(v == downvote){
+            votarTipodePost(idPregunta,"down");
+        }
+
     }
 
 }

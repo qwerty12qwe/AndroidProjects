@@ -78,6 +78,14 @@ public interface LoginApi {
     @FormUrlEncoded
     @POST("respuestasdepregunta.php")
     Call<QuestionResponses> getRespuestas(
-            @Field("id") int idQuestion
+            @Field("id") int idQuestion,
+            @Field("user") String usuario
     );
+
+    @FormUrlEncoded
+    @POST("votar.php")
+    Call<List<Integer>> votar(
+            @Field("id") int idtipodepost,
+            @Field("user") String usuario,
+            @Field("tipo") String tipo);
 }

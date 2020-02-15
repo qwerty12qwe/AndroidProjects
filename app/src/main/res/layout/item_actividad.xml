@@ -14,8 +14,8 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="R"
-        android:textColor="@color/lima"
-        android:textSize="18dp"
+        android:textColor="@color/app"
+        android:textSize="20sp"
         android:textStyle="bold"></TextView>
 
     <TextView

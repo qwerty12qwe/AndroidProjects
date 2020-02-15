@@ -13,11 +13,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proyectoandroid.API.LoginApi;
 import com.example.proyectoandroid.models.Question;
 import com.example.proyectoandroid.ui.home.HomeFragment;
 import com.example.proyectoandroid.ui.pregunta_respuestas.PreguntaRespuestas;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ReciclerViewAdapterResponses extends RecyclerView.Adapter<ReciclerViewAdapterResponses.ViewHolder> implements View.OnTouchListener {
 
@@ -60,6 +66,22 @@ public class ReciclerViewAdapterResponses extends RecyclerView.Adapter<ReciclerV
         holder.cuerpo.setText(respuestas.get(position).getDescription());
 
         holder.scroll.setOnTouchListener(this);
+
+        if (respuestas.get(position).getVoted() == 1)
+            holder.upvote.setBackgroundResource(R.drawable.upvotevotado);
+        else if(respuestas.get(position).getVoted() == 2)
+            holder.downvote.setBackgroundResource(R.drawable.downvotevotado);
+
+        holder.upvote.setOnClickListener(v -> {
+
+            h.votarTipodePost(respuestas.get(position).getId(),"up");
+
+        });
+
+        holder.downvote.setOnClickListener(v->{
+            h.votarTipodePost(respuestas.get(position).getId(),"down");
+        });
+
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
 //

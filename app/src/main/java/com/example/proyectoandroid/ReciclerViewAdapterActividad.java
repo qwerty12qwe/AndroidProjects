@@ -52,6 +52,9 @@ public class ReciclerViewAdapterActividad extends RecyclerView.Adapter<ReciclerV
 
         if (preguntas.get(position).getType().equals("question"))
             holder.tipo.setText("P");
+        else if(preguntas.get(position).getType().equals("response"))
+            holder.tipo.setText("R");
+
 
         holder.titulo.setOnClickListener(v -> {
             PreguntaRespuestas secFrag = new PreguntaRespuestas(preguntas.get(position).getId());

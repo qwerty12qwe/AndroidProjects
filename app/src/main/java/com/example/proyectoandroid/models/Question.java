@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Question {
 
+    @SerializedName("id")
     private int id;
     private int visites; // cantidad de visitas
     private int votes; // cantidad de votos
@@ -15,6 +16,7 @@ public class Question {
     @SerializedName("user")
     private String user;
     private String type;
+    private int voted;
 
     public int getId() {
         return id;
@@ -78,5 +80,13 @@ public class Question {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getVoted() {
+        return voted;
+    }
+
+    public void setVoted(int voted) {
+        this.voted = voted;
     }
 }

@@ -21,6 +21,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,11 +59,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         but.setOnClickListener(this);
         crearcuenta.setOnClickListener(this);
 
+        Bundle b = getIntent().getExtras();
+        boolean flag = true;
+        if (b != null)
+            flag = false;
+
+        if (flag){
         SharedPreferences prefs = getSharedPreferences("ficherologin",Context.MODE_PRIVATE);
-        if (prefs.getAll().size() != 0){
-            temail = prefs.getString("email","defecto");
-            tpassword = prefs.getString("password","defecto");
-            loadJSON();
+
+            if (prefs.getAll().size() != 0){
+                temail = prefs.getString("email","defecto");
+                tpassword = prefs.getString("password","defecto");
+                loadJSON();
+            }
         }
 
     }
@@ -96,8 +105,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 .setDateFormat("yyyy-MM-dd")
                 .create();
 
+        OkHttpClient cliente = new OkHttpClient();
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(MYURL)
+                .client(cliente)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

@@ -1,5 +1,6 @@
 package com.example.proyectoandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.navigation.NavController;
@@ -21,7 +22,7 @@ public class Nav extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private static Bundle b;
-    private TextView usuario;
+    private TextView usuario,logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,19 @@ public class Nav extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.navigation, menu);
         usuario = findViewById(R.id.nombre_de_usuario);
         usuario.setText(b.getString("nombre"));
+
+        logout = findViewById(R.id.logout);
+        logout.setOnClickListener(v -> {
+            finish();
+            Intent main = new Intent(this,Login.class);
+
+            Bundle bag = new Bundle();
+            bag.putBoolean("flag",false);
+            main.putExtras(bag);
+
+            startActivity(main);
+        });
+
         return true;
     }
 
