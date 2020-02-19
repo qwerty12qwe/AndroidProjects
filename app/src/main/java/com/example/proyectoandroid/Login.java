@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.proyectoandroid.API.LoginApi;
 import com.example.proyectoandroid.models.LoginState;
 import com.google.gson.FieldNamingPolicy;
@@ -59,9 +61,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         but.setOnClickListener(this);
         crearcuenta.setOnClickListener(this);
 
-        Bundle b = getIntent().getExtras();
+        boolean b = getIntent().getBooleanExtra("flag",true);
         boolean flag = true;
-        if (b != null)
+        if (!b)
             flag = false;
 
         if (flag){
@@ -151,6 +153,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             finish();
                             break;
                         case 2:
+                            YoYo.with(Techniques.Shake)
+                                    .duration(700)
+                                    .repeat(1)
+                                    .playOn(email);
+
+                            YoYo.with(Techniques.Shake)
+                                    .duration(700)
+                                    .repeat(1)
+                                    .playOn(password);
+
                             Toast.makeText(Login.this, "Este usuario no esta registrado", Toast.LENGTH_SHORT).show();
                             break;
 

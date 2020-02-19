@@ -61,10 +61,7 @@ public class Nav extends AppCompatActivity {
             finish();
             Intent main = new Intent(this,Login.class);
 
-            Bundle bag = new Bundle();
-            bag.putBoolean("flag",false);
-            main.putExtras(bag);
-
+            main.putExtra("flag",false);
             startActivity(main);
         });
 
