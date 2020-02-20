@@ -122,6 +122,15 @@ public class PreguntaRespuestas extends Fragment implements View.OnClickListener
         call.enqueue(new Callback<List<Integer>>() {
             @Override
             public void onResponse(Call<List<Integer>> call, Response<List<Integer>> response) {
+                getFragmentManager().popBackStack();
+
+                PreguntaRespuestas secFrag = new PreguntaRespuestas(idPregunta);
+
+                FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+
+                fragTransaction.replace(R.id.nav_host_fragment,secFrag);
+                fragTransaction.addToBackStack(null);
+                fragTransaction.commit();
             }
 
             @Override
